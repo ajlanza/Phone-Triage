@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+  }
+/*   
+  body {
+    font-family: "Open Sans",
+    sans-serif; 
+    font-size: 20px;
+    color: #444;
+    text-align: center;
+    line-height: 1.5;
+  } */
+  
+  nav {
+    padding: 1% 0;
+    background-color: #aaa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+  }
+  
+  
+  header {
+    padding: 10% 0;
+    background-color: salmon;
+  }
