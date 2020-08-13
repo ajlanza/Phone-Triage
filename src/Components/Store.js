@@ -1,26 +1,26 @@
 export default {
-  "problemType": [
-    {
-      "id": "1",
-      "name": "Screen",
-      "type": "screen",
-    },
-    {
-      "id": "2",
-      "name": "Audio",
-      "type": "audio",
-    },
-    {
-      "id": "3",
-      "name": "Battery",
-      "type": "battery",
-    },
-    {
-      "id": "4",
-      "name": "Software",
-      "type": "software",
-    }
-  ],
+  // "problemType": [
+  //   {
+  //     "id": "1",
+  //     "name": "Screen",
+  //     "type": "screen",
+  //   },
+  //   {
+  //     "id": "2",
+  //     "name": "Audio",
+  //     "type": "audio",
+  //   },
+  //   {
+  //     "id": "3",
+  //     "name": "Battery",
+  //     "type": "battery",
+  //   },
+  //   {
+  //     "id": "4",
+  //     "name": "Software",
+  //     "type": "software",
+  //   }
+  // ],
   "problems": [
     {
       "id": "cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1",
@@ -140,7 +140,7 @@ export default {
       "problemTypeId":"1",
       "title":"Cracked screen solution",
       "solution":"Buy a new phone.",
-      "workedCount": 0,
+      "workedCount": 1,
     },
     {
       "id":"200",

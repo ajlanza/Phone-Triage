@@ -62,12 +62,12 @@ export default class LogIn extends Component {
         <h1>Log In page</h1>
         <form className='login' onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="username">Username</label>
-            <input type="text" name='username' id='username' />
+            <label htmlFor='username'>Username:</label>
+            <input type='text' name='username' id='username' placeholder='Username' />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name='password' id='password' />
+            <label htmlFor='password'>Password:  </label>
+            <input type='password' name='password' id='password' placeholder='Password'/>
           </div>
           <button type='submit'>Log In</button>
         </form>

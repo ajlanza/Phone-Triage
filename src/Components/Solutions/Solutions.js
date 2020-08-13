@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TriageContext from '../TriageContext';
+import ApiService from '../../services/api-service';
 import { Link, Route } from 'react-router-dom';
 import Answer from '../Answer/Answer';
 //import './Solutions.css';
@@ -7,19 +8,22 @@ import Answer from '../Answer/Answer';
 export default class Solutions extends Component {
   static contextType = TriageContext;
   
- 
+  componentDidMount() {
+    this.context.clearError()
+    ApiService.getSolutions()
+      .then(this.context.setSolutions)
+      .catch(this.context.setError)
+  }
 
   render() {
-    // const { solutions } = this.context;
-    // const { problemId }  = this.props.match.params;
     const { solutions } = this.context;
     const url = window.location.pathname;
     const pathArray = url.split('/');
     const problemType = pathArray[1]
-    const problemId = pathArray[3];
-    // const solutionId = pathArray[4];
-    const solutionsToProblem = solutions.filter(solution => solution.problemId === problemId)
-    console.log('solutions component', problemId);
+    // change the url string id to an integer so we can match it to our database value
+    const problemId = parseInt(pathArray[3]);
+        
+    const solutionsToProblem = solutions.filter(solution => solution.problem_id === problemId);
     
     return (
       <div>

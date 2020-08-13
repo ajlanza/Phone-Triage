@@ -1,4 +1,8 @@
 .hero{
   display: flex;
   justify-content: center;
+  background-color:#77C9D4;
+  color: white;
+  padding: 0;
+  
 }
