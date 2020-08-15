@@ -1,68 +1,51 @@
 import React, { Component } from 'react';
+import TokenService from '../../services/token-service';
+import AuthApiService from '../../services/auth-api-service';
 import TriageContext from '../TriageContext';
 
 export default class LogIn extends Component {
-  static contextType = TriageContext
-  state = {
-    username: '',
-    password: '',
-    hasError: false,
-    validUser: false,
+  static contextType = TriageContext;
+
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {},
+    },
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    e.persist()
-    const username = e.target.username.value
-    const password = e.target.password.value
-    this.setState({
-      username: username,
-      password: password,
-      // validUser: false,
-    }, () => {this.validateUser(username) }); 
+  state = { 
+    error: null, 
+    loggedIn: false,
   }
 
-  validateUser(username) {
-    console.log('validate user function running')
-    const { users } = this.context;
-    const user = users.find(user => user.username === username)
-    // console.log('context: ', user.username, ' ', user.password)
-    // console.log('state', this.state.username, ' ', this.state.password)
-    if(!user){
-      this.setState({
-        hasError: true,
-        validUser: false,
+  handleSubmit = ev => {
+    ev.preventDefault()
+    this.setState({ error: null })
+    const { username, password } = ev.target
+    
+    AuthApiService.postLogin({
+      username: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken)        
       })
-      return
-    }
-    if(user.password !== this.state.password) {
-      this.setState({
-        hasError: true,
-        validUser: false,
+      .catch(res => {
+        this.setState({ error: res.error })
       })
-      return { hasError: true }
-    }
-    if (user.password === this.state.password) {
-      this.setState({
-        hasError: false,
-        validUser: true,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      })
-    } 
   }
+
 
   render() {
     
-    // const user = users[1]
-    // console.log(user)
-    
     return(
       <div>
-        <h1>Log In page</h1>
+        {this.state.loggedIn ? <h1>Successfully logged in</h1> : ''}
         <form className='login' onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor='username'>Username:</label>
+            <label htmlFor='username'>User name:</label>
             <input type='text' name='username' id='username' placeholder='Username' />
           </div>
           <div>

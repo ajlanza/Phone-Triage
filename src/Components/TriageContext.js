@@ -5,7 +5,7 @@ const TriageContext = React.createContext({
   problems: [],
   solutions: [],
   users: [],
-  addUser: () => {},
+  //addUser: () => {},
   setError: () => {},
   clearError: () => {},
   setProblems: () => {},

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import Problems from './Problems';
+import Service from './Service';
 
-test('ScreenProblems renders without crashing', () => {
+test('Service renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<BrowserRouter><Problems /></BrowserRouter>, div);
+  ReactDOM.render(<BrowserRouter><Service /></BrowserRouter>, div);
 });

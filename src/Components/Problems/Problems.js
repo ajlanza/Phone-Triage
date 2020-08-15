@@ -1,43 +1,75 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import ScreenProblems from '../ScreenProblems/ScreenProblems';
-import AudioProblems from '../AudioProblems/AudioProblems';
-import BatteryProblems from '../BatteryProblems/BatteryProblems';
-import SoftwareProblems from '../SoftwareProblems/SoftwareProblems';
 import TriageContext from '../TriageContext';
 import ApiService from '../../services/api-service';
-import './problems.css';
+import { Link } from 'react-router-dom';
+import Solutions from '../Solutions/Solutions';
+import './Problems.css';
 
 export default class Problems extends Component {
   static contextType = TriageContext;
   
-  componentDidMount() {
-    this.context.clearError()
-    ApiService.getProblemTypes()
-      .then(this.context.setProblemTypes)
-      .catch(this.context.setError)
+  state = {
+    problems: [],
+    currentProblemType: '',
+    currentProblemId: ''
   }
-  
+
+   componentDidMount() {
+     let problems;
+     this.context.clearError()
+     ApiService.getProblems()
+       .then((data) => {
+         this.context.setProblems(data)
+         problems = data.filter(problem => (problem.problem_type) === this.props.problemTypeId)
+         if(problems && problems.length > 0){
+           this.setState({
+             problems
+           })
+         }
+       })      
+       .catch(this.context.setError)
+   }
+
+  handleClick = (event, problemType, problemId) => {
+    event.preventDefault()
+    this.setState({
+      currentProblemType: problemType,
+      currentProblemId: problemId
+    })
+  }
+
   render() {
-    const { problemTypes=[] } = this.context
-    // console.log('from problems.js', this.context)
+   
     return(
-      <div>
-       
-        <h3>What type of problem are you having?</h3>
-        <h4><ul className="problemType">
-          {/* Create a link for each type of problem we have */}
-          {problemTypes.map(type => 
-            <li key={type.id}>
-              <Link to={`/${type.type}`}>{type.name}</Link>
-            </li>)}
-        </ul></h4>     
-       
-        <Route path='/screen' component={ ScreenProblems }  />
-        <Route path='/audio' component={ AudioProblems } />
-        <Route path='/battery' component={ BatteryProblems } />
-        <Route path='/software' component={ SoftwareProblems } />
+      <div className='problems'>
+        <h2> {this.props.problemName} Problems</h2>
+        <ul className="problems">
+            {this.state.problems.length > 0 ? this.state.problems.map(problem => 
+              <li key={problem.id} onClick={(event) => {
+                this.handleClick(event, problem.problem_type, problem.id)
+              }}>
+                {problem.title}
+                <div hidden={!(this.state.currentProblemId === problem.id)}>
+                  <Solutions problemType={problem.problem_type} problemId={problem.id}/>
+                </div>
+                {/* <Route path={`/screen/solutions`} component={ Solutions } />
+                <Link to={`/screen/solutions?problemType=${problem.problem_type}&problemId=${problem.id}`}>{problem.title}</Link> */}
+              </li>
+            )
+            : <li>No {this.props.type} problems</li>
+            }
+            <li>
+              <Link to='/problem'><input type='button' value='Post a new problem' /></Link>  
+            </li>            
+        </ul>
       </div>
-    )
+
+
+    // <div>
+    // <h1>{this.props.typeOfProblem} problem</h1>
+    // {console.log(this.context.problems)}
+    
+    // </div>
+      )
   }
 }
