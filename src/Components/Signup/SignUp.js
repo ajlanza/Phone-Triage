@@ -50,7 +50,6 @@ export default class SignUp extends Component {
     }, () => { 
       // after state is set, check if passwords match and change state accordingly
       if(this.state.password === this.state.confirm){
-        console.log('passwords match')
         this.setState({
           match: true
         })

@@ -63,13 +63,6 @@ export default class Problems extends Component {
             </li>            
         </ul>
       </div>
-
-
-    // <div>
-    // <h1>{this.props.typeOfProblem} problem</h1>
-    // {console.log(this.context.problems)}
-    
-    // </div>
       )
   }
 }

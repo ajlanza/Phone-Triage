@@ -12,6 +12,7 @@ export default class PostProblem extends  Component {
   handleSubmit = e => {
     e.preventDefault()
     e.persist()
+       
         const problemType = e.target.problemType.value;
         const title = e.target.title.value;
         this.setState({ error: null })
@@ -37,7 +38,7 @@ export default class PostProblem extends  Component {
         {this.state.alreadyPosted 
         ? <h3>Problem posted</h3> 
         : <div>
-          {/* If the user is logged in alway then to submit the form, otherwise inform them to log in or sign up */}
+          {/* If the user is logged in allow them to submit the form, otherwise inform them to log in or sign up */}
           {TokenService.hasAuthToken() 
             ? <h3>Please fill out the form to post your problem.</h3>
             : <h3>Please <Link to='/login'>log in</Link> to post a new problem. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>

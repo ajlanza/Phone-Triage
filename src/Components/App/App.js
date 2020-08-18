@@ -8,6 +8,7 @@ import LogIn from '../LogIn/LogIn';
 import Service from '../Service/Service';
 import LogOut from '../LogOut/LogOut';
 import PostProblem from '../PostProblem/PostProblem';
+import PostAnswer from '../PostAnswer/PostAnswer';
 import './App.css';
 
 export default class App extends Component {
@@ -29,6 +30,7 @@ export default class App extends Component {
             <Route path='/logout' component={ LogOut } />
             <Route path='/service' component={ Service } />
             <Route path='/problem' component={ PostProblem } />
+            <Route path={'/answer'} component={ PostAnswer } />
             <Route path='/' component={ Homepage } />
           </Switch>
         </main>

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TriageContext from '../TriageContext';
 import ApiService from '../../services/api-service';
 import Answer from '../Answer/Answer';
+//import PostAnswer from '../PostAnswer/PostAnswer';
+import { Link } from 'react-router-dom';
+// import PostProblem from '../PostProblem/PostProblem';
 import './Solutions.css';
 
 export default class Solutions extends Component {
@@ -12,7 +15,8 @@ export default class Solutions extends Component {
     this.state = {
       solutionsToProblem: [],
       currentProblemId: '',
-      currentSolutionId: ''
+      currentSolutionId: '',
+      hidePostAnswerForm: true
     }
   }
 
@@ -32,23 +36,29 @@ export default class Solutions extends Component {
       .catch(this.context.setError)
   }
 
-  handleClick = (event, problemId, solutionId) => {
+  handleSolutionTitleClick = (event, problemId, solutionId) => {
     event.preventDefault()
     this.setState({
       currentProblemId: problemId,
       currentSolutionId: solutionId
     })
   }
+
+  handlePostAnswerClick = (event => {
+    event.preventDefault()
+    this.setState({
+      hidePostAnswerForm: !this.state.hidePostAnswerForm
+    })
+  })
   render() {
     const { solutionsToProblem } = this.state;
-    const { problemId } = this.props 
-    
+    const { problemId } = this.props
     return (
       <div>
         <ul className='solutions'>
           {solutionsToProblem.map(solution => 
           <li key={solution.id} onClick={(event) => {
-            this.handleClick(event, problemId, solution.id)
+            this.handleSolutionTitleClick(event, problemId, solution.id)
           }}>
             {solution.title}
             <div hidden={!(this.state.currentSolutionId === solution.id)}>
@@ -56,6 +66,19 @@ export default class Solutions extends Component {
             </div>
           </li>
           )}
+          <li>
+          <Link to={{
+            pathname: `/answer`,
+            state: {problemId: problemId, problemType: this.props.problemType}
+          }}>
+            <input type='button' value='Post an answer' />
+          </Link>
+          {/* <input type='button' value='Post an answer' onClick={(event) => {
+            this.handlePostAnswerClick(event)}} />
+            <div hidden={this.state.hidePostAnswerForm}>
+              <PostAnswer problemId={problemId} problemType={this.props.problemType}/>  
+            </div> */}
+          </li> 
         </ul>
       </div>
     )

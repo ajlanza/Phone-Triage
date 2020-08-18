@@ -38,7 +38,6 @@ export class TriageContextProvider extends Component {
 
   setAuthorized = authorized => {
     this.setState ({ authorized })
-    console.log('in setAuthorized from TriageContext')
   }
 
   setError = error => {
