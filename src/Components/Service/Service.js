@@ -3,15 +3,30 @@ import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
 
 export default class Service extends Component {
-    
+  state={
+    formSubmitted: false
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.setState({
+        formSubmitted: true
+    })    
+  }
+
+  componentDidMount
   render() {
     return (
+      <div>
+        {this.state.formSubmitted 
+          ? <h2>Your service request has been submitted.<br/> Thank you for using Phone Triage.</h2>
+          :
       <div>
         {/* Change the header depending on whether the user has signed in or not */}
         {TokenService.hasAuthToken() 
         ? <h2>Please fill out the form to request service.</h2> 
         : <h2>Please <Link to='/login'>sign in</Link> to request service</h2> }
-        <form className='service-form'>
+        <form className='service-form' onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="address">Address</label>
             <input placeholder='Where should we meet you.' type="text" name='first-name' id='first-name' />
@@ -40,6 +55,8 @@ export default class Service extends Component {
           {/* disable the submit button until user has signed in */}
           <button type='submit' disabled={!TokenService.hasAuthToken()}>Submit</button>
         </form>
+      </div>
+       }
       </div>
     )
   }

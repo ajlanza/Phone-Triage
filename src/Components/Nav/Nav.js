@@ -73,9 +73,12 @@ export default class Nav extends Component {
           </div>
         </div>
         <div className='bigScreenContainer' >
+          <div className='homeLink'>
           <Link to='/' className='navLink' >
             Home{"  "}
           </Link>
+          </div>
+          <div className='otherLinks'>
           <Link to='/signup' className='navLink'>
             Sign Up
           </Link>
@@ -90,6 +93,7 @@ export default class Nav extends Component {
           <Link to='/service' className='navLink'>
             Request Service
           </Link>
+          </div>
         </div>
       </div>
     );
