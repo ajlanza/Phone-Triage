@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
+import ApiService from '../../services/api-service';
 
 
 
@@ -10,9 +11,24 @@ export default class PostProblem extends  Component {
     error: null,
     // problemId: null,
     // problemType: null,
-    alreadyPosted: false
+    alreadyPosted: false,
+    problemToAnswer: ''
   }
   
+  componentDidMount() {
+    let problemToAnswer;
+    const problemId = parseInt(this.props.location.state.problemId);
+    ApiService.getProblemById(problemId)
+      .then((data) => {
+        problemToAnswer = data.title
+        if(problemToAnswer.length > 0){
+          this.setState({
+            problemToAnswer
+          })
+        }
+      })
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     e.persist()
@@ -36,6 +52,7 @@ export default class PostProblem extends  Component {
           })
           .catch(res => {
             this.setState({ error: res.error })
+
           })
     }
 
@@ -48,7 +65,7 @@ export default class PostProblem extends  Component {
         : <div>
           {/* If the user is logged in allow then to submit the form, otherwise inform them to log in or sign up */}
           {TokenService.hasAuthToken() 
-            ? <h3>Please fill out the form to submit an answer.</h3>
+            ? <div><h3>Problem to answer: </h3> <h4>{this.state.problemToAnswer}</h4></div>
             : <h3>Please <Link to='/login'>log in</Link> to post an answer. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
           } 
             <form className='answer-form' onSubmit={this.handleSubmit}>

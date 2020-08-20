@@ -3,7 +3,7 @@ import TriageContext from '../TriageContext';
 import ApiService from '../../services/api-service';
 import { Link } from 'react-router-dom';
 import Solutions from '../Solutions/Solutions';
-import './Problems.css';
+import './problems.css';
 
 export default class Problems extends Component {
   static contextType = TriageContext;
