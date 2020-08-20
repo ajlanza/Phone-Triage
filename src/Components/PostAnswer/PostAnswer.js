@@ -66,7 +66,7 @@ export default class PostProblem extends  Component {
           {/* If the user is logged in allow then to submit the form, otherwise inform them to log in or sign up */}
           {TokenService.hasAuthToken() 
             ? <div><h3>Problem to answer: </h3> <h4>{this.state.problemToAnswer}</h4></div>
-            : <h3>Please <Link to='/login'>log in</Link> to post an answer. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
+            : <h3><Link to='/login'>Log in</Link> to post an answer. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
           } 
             <form className='answer-form' onSubmit={this.handleSubmit}>
               <div>

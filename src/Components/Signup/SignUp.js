@@ -38,7 +38,7 @@ export default class SignUp extends Component {
         this.setState({ error: res.error })
       })
     //this.context.addUser(user)
-    this.props.history.push('/')
+    //this.props.history.push('/')
   }
 
   confirmPassword = e => {
@@ -66,6 +66,7 @@ export default class SignUp extends Component {
     //const { error } = this.state
     return (
       <div>
+        <h1>{this.state.error}</h1>
         <h2>Please fill out the form to register an account.</h2>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div>
