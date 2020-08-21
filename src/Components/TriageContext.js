@@ -5,13 +5,11 @@ const TriageContext = React.createContext({
   problems: [],
   solutions: [],
   users: [],
-  //addUser: () => {},
   setError: () => {},
   clearError: () => {},
   setProblems: () => {},
   setProblemTypes: () => {},
   setSolutions: () => {},
-  setAuthorized: () => {},
 })
 export default TriageContext
 
@@ -36,9 +34,6 @@ export class TriageContextProvider extends Component {
     this.setState({ solutions })
   }
 
-  setAuthorized = authorized => {
-    this.setState ({ authorized })
-  }
 
   setError = error => {
     console.error(error)
@@ -60,7 +55,6 @@ export class TriageContextProvider extends Component {
       setProblems: this.setProblems,
       setProblemTypes: this.setProblemTypes,
       setSolutions: this.setSolutions,
-      setAuthorized: this.setAuthorized,
     }
     return (
       <TriageContext.Provider value={value}>

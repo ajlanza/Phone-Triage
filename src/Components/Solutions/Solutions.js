@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import TriageContext from '../TriageContext';
 import ApiService from '../../services/api-service';
 import Answer from '../Answer/Answer';
-//import PostAnswer from '../PostAnswer/PostAnswer';
 import { Link } from 'react-router-dom';
-// import PostProblem from '../PostProblem/PostProblem';
 import './Solutions.css';
 
 export default class Solutions extends Component {
@@ -67,17 +65,12 @@ export default class Solutions extends Component {
           </li>
           )}
           <li>
-          <Link to={{
-            pathname: `/answer`,
-            state: {problemId: problemId, problemType: this.props.problemType}
-          }}>
+            <Link to={{
+              pathname: `/answer`,
+              state: {problemId: problemId, problemType: this.props.problemType}
+            }}>
             <input type='button' value='Post an answer' />
-          </Link>
-          {/* <input type='button' value='Post an answer' onClick={(event) => {
-            this.handlePostAnswerClick(event)}} />
-            <div hidden={this.state.hidePostAnswerForm}>
-              <PostAnswer problemId={problemId} problemType={this.props.problemType}/>  
-            </div> */}
+            </Link>
           </li> 
         </ul>
       </div>

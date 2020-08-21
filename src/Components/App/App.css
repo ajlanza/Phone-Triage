@@ -12,7 +12,7 @@
   } 
   
   nav {
-    padding: 1% 0;
+    padding: 0;
     background-color: #77C9D4;
     position: fixed;
     top: 0;
@@ -24,6 +24,6 @@
   
   
   header {
-    padding: 10% 0;
+    padding: 0;
     background-color: #77C9D4;
   }

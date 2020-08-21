@@ -52,8 +52,6 @@ export default class Problems extends Component {
                 <div hidden={!(this.state.currentProblemId === problem.id)}>
                   <Solutions problemType={problem.problem_type} problemId={problem.id}/>
                 </div>
-                {/* <Route path={`/screen/solutions`} component={ Solutions } />
-                <Link to={`/screen/solutions?problemType=${problem.problem_type}&problemId=${problem.id}`}>{problem.title}</Link> */}
               </li>
             )
             : <li>No {this.props.type} problems</li>

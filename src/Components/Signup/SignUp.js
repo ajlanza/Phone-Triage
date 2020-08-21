@@ -6,7 +6,6 @@ import './SignUp.css';
 export default class SignUp extends Component {
   static contextType = TriageContext;
   state = {
-    // addUser: '',
     password: '',
     confirm: '',
     match: false,
@@ -37,8 +36,6 @@ export default class SignUp extends Component {
       .catch(res => {
         this.setState({ error: res.error })
       })
-    //this.context.addUser(user)
-    //this.props.history.push('/')
   }
 
   confirmPassword = e => {
@@ -63,7 +60,7 @@ export default class SignUp extends Component {
   }
 
   render() {
-    //const { error } = this.state
+   
     return (
       <div>
         <h1>{this.state.error}</h1>

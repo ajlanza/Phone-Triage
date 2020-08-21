@@ -9,8 +9,6 @@ import ApiService from '../../services/api-service';
 export default class PostProblem extends  Component {
   state = {
     error: null,
-    // problemId: null,
-    // problemType: null,
     alreadyPosted: false,
     problemToAnswer: ''
   }
@@ -65,16 +63,16 @@ export default class PostProblem extends  Component {
         : <div>
           {/* If the user is logged in allow then to submit the form, otherwise inform them to log in or sign up */}
           {TokenService.hasAuthToken() 
-            ? <div><h3>Problem to answer: </h3> <h4>{this.state.problemToAnswer}</h4></div>
+            ? <div><h3>Problem to answer: </h3> <h4>"{this.state.problemToAnswer}"</h4></div>
             : <h3><Link to='/login'>Log in</Link> to post an answer. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
           } 
             <form className='answer-form' onSubmit={this.handleSubmit}>
               <div>
-                <label htmlFor='title'>Title</label>
+                <label htmlFor='title'>Title:</label> <br/>
                 <input required type='text' name='title' id='title' placeholder='Title' /><br />
               </div>
               <div>
-                <label htmlFor='answer'>Answer</label><br />
+                <label htmlFor='answer'>Answer:</label><br />
                 <textarea required type='text' name='answer' id='answer' placeholder='Steps to fix problem.' />
               </div>
               <button type='submit' disabled={!TokenService.hasAuthToken()}>Post answer</button>
