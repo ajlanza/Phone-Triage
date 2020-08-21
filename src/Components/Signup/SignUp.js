@@ -6,7 +6,6 @@ import './SignUp.css';
 export default class SignUp extends Component {
   static contextType = TriageContext;
   state = {
-    // addUser: '',
     password: '',
     confirm: '',
     match: false,
@@ -37,8 +36,6 @@ export default class SignUp extends Component {
       .catch(res => {
         this.setState({ error: res.error })
       })
-    //this.context.addUser(user)
-    this.props.history.push('/')
   }
 
   confirmPassword = e => {
@@ -50,7 +47,6 @@ export default class SignUp extends Component {
     }, () => { 
       // after state is set, check if passwords match and change state accordingly
       if(this.state.password === this.state.confirm){
-        console.log('passwords match')
         this.setState({
           match: true
         })
@@ -64,9 +60,10 @@ export default class SignUp extends Component {
   }
 
   render() {
-    //const { error } = this.state
+   
     return (
       <div>
+        <h1>{this.state.error}</h1>
         <h2>Please fill out the form to register an account.</h2>
         <form className='signup-form' onSubmit={this.handleSubmit}>
           <div>

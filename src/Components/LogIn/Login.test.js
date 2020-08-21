@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './Login';
+import LogIn from './LogIn';
 
 test('Login renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Login />, div);
+  ReactDOM.render(<LogIn />, div);
 });

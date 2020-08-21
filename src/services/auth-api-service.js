@@ -45,6 +45,34 @@ const AuthApiService = {
           :res.json()
       )
   },
+  postAnswer(answer) {
+    return fetch(`${config.API_ENDPOINT}/solutions`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(answer),
+    })
+      .then(res =>
+        (!res.ok)
+          ?res.json().then(e=> Promise.reject(e))
+          :res.json()
+      )
+  },
+  updateWorkedCount(solutionId, newWorkedCount) {
+    return fetch(`${config.API_ENDPOINT}/solutions/${solutionId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(newWorkedCount)
+    })
+      .then(res =>
+        (!res.ok)
+          ?res.json().then(e=> Promise.reject(e))
+          :res.json()
+      )
+  },
 }
 
 export default AuthApiService

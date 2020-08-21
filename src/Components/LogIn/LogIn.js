@@ -1,79 +1,70 @@
 import React, { Component } from 'react';
+import TokenService from '../../services/token-service';
+import AuthApiService from '../../services/auth-api-service';
 import TriageContext from '../TriageContext';
+import SweetAlert from 'sweetalert2';
 
 export default class LogIn extends Component {
-  static contextType = TriageContext
-  state = {
-    username: '',
-    password: '',
-    hasError: false,
-    validUser: false,
+  static contextType = TriageContext;
+
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {},
+    },
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    e.persist()
-    const username = e.target.username.value
-    const password = e.target.password.value
-    this.setState({
-      username: username,
-      password: password,
-      // validUser: false,
-    }, () => {this.validateUser(username) }); 
+  state = { 
+    error: null, 
+    loggedIn: false,
   }
 
-  validateUser(username) {
-    console.log('validate user function running')
-    const { users } = this.context;
-    const user = users.find(user => user.username === username)
-    // console.log('context: ', user.username, ' ', user.password)
-    // console.log('state', this.state.username, ' ', this.state.password)
-    if(!user){
-      this.setState({
-        hasError: true,
-        validUser: false,
+  handleSubmit = ev => {
+    ev.preventDefault()
+    this.setState({ error: null })
+    const { username, password } = ev.target
+    
+    AuthApiService.postLogin({
+      username: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken) 
+        this.props.history.goBack()       
       })
-      return
-    }
-    if(user.password !== this.state.password) {
-      this.setState({
-        hasError: true,
-        validUser: false,
+      .catch(res => {
+        this.setState({ error: res.error })
+        SweetAlert.fire({
+          icon: 'error',
+          title: 'Incorrect username or password!',
+          text: 'Please try again.'
+        })
       })
-      return { hasError: true }
-    }
-    if (user.password === this.state.password) {
-      this.setState({
-        hasError: false,
-        validUser: true,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      })
-    } 
+
   }
+
 
   render() {
     
-    // const user = users[1]
-    // console.log(user)
-    
     return(
       <div>
-        <h1>Log In page</h1>
+        {this.state.loggedIn ? <h1>Successfully logged in</h1> : ''}
         <form className='login' onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor='username'>Username:</label>
-            <input type='text' name='username' id='username' placeholder='Username' />
+            <input required type='text' name='username' id='username' placeholder='Username' />
           </div>
           <div>
             <label htmlFor='password'>Password:  </label>
-            <input type='password' name='password' id='password' placeholder='Password'/>
+            <input required type='password' name='password' id='password' placeholder='Password'/>
           </div>
-          <button type='submit'>Log In</button>
+          <button type='submit' >Log In</button>
         </form>
         {/* if username and password don't match inform user */}
         {this.state.hasError ? <p>invalid credentials</p> : ''}
-        {/* if succsessfully loging in welcome user*/}
+        {/* if succsessfully logging in welcome user*/}
         {this.state.validUser ? <p>Welcome {this.state.firstName}!</p> : ''}
         
       </div>

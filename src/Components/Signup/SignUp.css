@@ -4,7 +4,7 @@
 .unconfirmed{
   border: 2px solid red;
 }
-input{
+input, textarea, select{
   border: 2px solid black;
   border-radius: 5px;
 }

@@ -2,6 +2,24 @@
   position: relative;
   display: none;
 }
+.bigScreenContainer{
+  display: flex;
+  
+  width: 100%;
+}
+.homeLink {
+  text-align: left;
+}
+.otherLinks {
+  width: 100%;
+  align-items:right;
+
+  
+}
+.navLink{
+  padding: 0px 1%;
+  
+}
 .button {
   padding: 0;
   width: 35px;
@@ -14,7 +32,7 @@
 .dropdown { 
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   width: 300px;
   z-index: 2;
   background-color: #57bc90a1;
@@ -28,6 +46,7 @@ ul {
 }
 li {
   padding: 8px 12px;
+  font-family: 'Roboto';
 }
 li:hover {
   background-color: rgba(0, 0, 0, 0.14);

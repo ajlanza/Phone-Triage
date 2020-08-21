@@ -1,28 +1,29 @@
 * {
     box-sizing: border-box;
   }
-/*   
+   
   body {
-    font-family: "Open Sans",
+    font-family: 'Noto Sans JP',
     sans-serif; 
-    font-size: 20px;
+    /* font-size: 20px;
     color: #444;
     text-align: center;
-    line-height: 1.5;
-  } */
+    line-height: 1.5; */
+  } 
   
   nav {
-    padding: 1% 0;
+    padding: 0;
     background-color: #77C9D4;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    text-align: left;
+    text-align: right;
+
   }
   
   
   header {
-    padding: 10% 0;
+    padding: 0;
     background-color: #77C9D4;
   }
