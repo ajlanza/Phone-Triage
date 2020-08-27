@@ -14,7 +14,6 @@ export default class Solutions extends Component {
       solutionsToProblem: [],
       currentProblemId: '',
       currentSolutionId: '',
-      hidePostAnswerForm: true
     }
   }
 
@@ -38,38 +37,42 @@ export default class Solutions extends Component {
     event.preventDefault()
     this.setState({
       currentProblemId: problemId,
-      currentSolutionId: solutionId
+      currentSolutionId: solutionId,
     })
   }
 
-  handlePostAnswerClick = (event => {
-    event.preventDefault()
-    this.setState({
-      hidePostAnswerForm: !this.state.hidePostAnswerForm
-    })
-  })
   render() {
     const { solutionsToProblem } = this.state;
     const { problemId } = this.props
     return (
       <div>
-        <ul className='solutions'>
-          {solutionsToProblem.map(solution => 
+        <ul>
+          {solutionsToProblem.length > 0
+          ? <>{solutionsToProblem.map(solution => 
           <li key={solution.id} onClick={(event) => {
             this.handleSolutionTitleClick(event, problemId, solution.id)
           }}>
             {solution.title}
-            <div hidden={!(this.state.currentSolutionId === solution.id)}>
+            <div hidden={!(this.state.currentSolutionId === solution.id)
+              }>
               <Answer problemId={problemId} solutionId={solution.id} />
             </div>
           </li>
-          )}
-          <li>
+          )}</>
+          
+          : <li>No solutions yet. Please check back later.</li>
+        }
+        <li>
             <Link to={{
               pathname: `/answer`,
               state: {problemId: problemId, problemType: this.props.problemType}
             }}>
-            <input type='button' value='Post an answer' />
+            <input type='button' value='Share your solution' />
+            </Link>
+            <Link to={{
+              pathname: `/service`,
+            }}>
+            <input type='button' value='Request service' />
             </Link>
           </li> 
         </ul>

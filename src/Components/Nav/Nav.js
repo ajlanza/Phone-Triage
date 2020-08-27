@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 import TokenService from '../../services/token-service';
+import TriageContext from '../TriageContext'
 
 export default class Nav extends Component {
+  static contextType = TriageContext;
+
   container = React.createRef();
+
   state = {
     open: false,
   };
@@ -30,8 +34,10 @@ export default class Nav extends Component {
   componentWillUnmount() {
     document.removeEventListener("mousedown",this.handleCloseMenu);
   }
+ 
 
   render(){
+    
     return(
       <div>
         <div className="hideThis">
@@ -45,17 +51,20 @@ export default class Nav extends Component {
                       Home{"  "}
                     </Link>
                   </li>
-                  <li>
-                    <Link to='/signup' className='navLink' onClick={this.handleMenuClick}>
-                      Sign Up
-                    </Link>
-                  </li>
+                  
                   {!TokenService.hasAuthToken() 
-                  ? <li>
-                      <Link to='/login' className='navLink' onClick={this.handleMenuClick}>
-                        Log In
-                      </Link>
-                    </li>
+                  ? <div>
+                      <li>
+                        <Link to='/login' className='navLink' onClick={this.handleMenuClick}>
+                          Log In
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to='/signup' className='navLink' onClick={this.handleMenuClick}>
+                          Sign Up
+                        </Link>
+                      </li>
+                    </div>
                   : <li>
                       <Link to='/logout' className='navLink'>
                         Log Out
@@ -79,13 +88,15 @@ export default class Nav extends Component {
           </Link>
           </div>
           <div className='otherLinks'>
-          <Link to='/signup' className='navLink'>
-            Sign Up
-          </Link>
           {!TokenService.hasAuthToken() 
-          ? <Link to='/login' className='navLink'>
-              Log In
-            </Link>
+          ? <>
+              <Link to='/login' className='navLink'>
+                Log In
+              </Link>
+              <Link to='/signup' className='navLink'>
+                Sign Up
+              </Link>
+            </>
           : <Link to='/logout' className='navLink'>
               Log Out
             </Link> 

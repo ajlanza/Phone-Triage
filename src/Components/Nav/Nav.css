@@ -2,10 +2,14 @@
   position: relative;
   display: none;
 }
+.hideThis {
+  background-color:black;
+
+}
 .bigScreenContainer{
   display: flex;
-  
-  width: 100%;
+  /* width: 100%; */
+  background-color:black;
 }
 .homeLink {
   text-align: left;
@@ -13,12 +17,12 @@
 .otherLinks {
   width: 100%;
   align-items:right;
-
-  
 }
 .navLink{
   padding: 0px 1%;
-  
+}
+a{
+  color: white;
 }
 .button {
   padding: 0;
@@ -27,15 +31,16 @@
   cursor: pointer;
   outline: 0;
   font-size: 20px;
-  background-color: #77C9D4;
+  background-color: black;
+  color: white;
 }
 .dropdown { 
   position: absolute;
   top: 100%;
   right: 0;
-  width: 300px;
+  width: 200px;
   z-index: 2;
-  background-color: #57bc90a1;
+  background-color: #020e33a1;
   border: 1px solid rgba(0, 0, 0, 0.04);
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
 }

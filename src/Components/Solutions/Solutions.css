@@ -1,14 +1,16 @@
 * {
-    box-sizing: border-box;
-  }
-ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 li {
-    list-style-type: none;
-    padding-left: 0px;
+  list-style-type: none;
+}
+
+li:hover {
+  background-color: rgba(0, 0, 0, 0.14);
 }

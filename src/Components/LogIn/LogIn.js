@@ -3,6 +3,7 @@ import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import TriageContext from '../TriageContext';
 import SweetAlert from 'sweetalert2';
+import './LogIn.css';
 
 export default class LogIn extends Component {
   static contextType = TriageContext;
@@ -16,7 +17,6 @@ export default class LogIn extends Component {
 
   state = { 
     error: null, 
-    loggedIn: false,
   }
 
   handleSubmit = ev => {
@@ -32,7 +32,7 @@ export default class LogIn extends Component {
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken) 
-        this.props.history.goBack()       
+        this.props.history.goBack();
       })
       .catch(res => {
         this.setState({ error: res.error })
@@ -42,15 +42,14 @@ export default class LogIn extends Component {
           text: 'Please try again.'
         })
       })
-
   }
 
 
   render() {
     
     return(
-      <div>
-        {this.state.loggedIn ? <h1>Successfully logged in</h1> : ''}
+      <div className='login'>
+        <h3>Please log in to access all features of Phone Triage.</h3>
         <form className='login' onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor='username'>Username:</label>
@@ -61,12 +60,7 @@ export default class LogIn extends Component {
             <input required type='password' name='password' id='password' placeholder='Password'/>
           </div>
           <button type='submit' >Log In</button>
-        </form>
-        {/* if username and password don't match inform user */}
-        {this.state.hasError ? <p>invalid credentials</p> : ''}
-        {/* if succsessfully logging in welcome user*/}
-        {this.state.validUser ? <p>Welcome {this.state.firstName}!</p> : ''}
-        
+        </form>        
       </div>
     )
   }

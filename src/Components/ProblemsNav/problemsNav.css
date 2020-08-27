@@ -1,14 +1,17 @@
-  ul.problemType {
+ul.problemType {
     display: flex;
-    align-items: flex-start;
-    /* background-color: #57bc90; */
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between;
 }
 li {
     list-style-type: none;
     align-items: flex-start;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.problemLink{ 
+  color: black;
 }

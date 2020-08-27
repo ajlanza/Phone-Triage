@@ -3,27 +3,22 @@
   }
    
   body {
-    font-family: 'Noto Sans JP',
-    sans-serif; 
-    /* font-size: 20px;
-    color: #444;
-    text-align: center;
-    line-height: 1.5; */
+    font-family: 'Noto Sans JP', sans-serif; 
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    background-attachment: fixed;
   } 
   
   nav {
     padding: 0;
-    background-color: #77C9D4;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     text-align: right;
-
   }
   
   
   header {
     padding: 0;
-    background-color: #77C9D4;
   }
