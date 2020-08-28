@@ -52,7 +52,7 @@ export default class Solutions extends Component {
           <li key={solution.id} onClick={(event) => {
             this.handleSolutionTitleClick(event, problemId, solution.id)
           }}>
-            {solution.title}
+            <span className='solutions'>{solution.title}</span>
             <div hidden={!(this.state.currentSolutionId === solution.id)
               }>
               <Answer problemId={problemId} solutionId={solution.id} />
@@ -60,7 +60,7 @@ export default class Solutions extends Component {
           </li>
           )}</>
           
-          : <li>No solutions yet. Please check back later.</li>
+          : <li className='noSolution'>No solutions yet. Please check back later.</li>
         }
         <li>
             <Link to={{
@@ -69,9 +69,7 @@ export default class Solutions extends Component {
             }}>
             <input type='button' value='Share your solution' />
             </Link>
-            <Link to={{
-              pathname: `/service`,
-            }}>
+            <Link to='/service'>
             <input type='button' value='Request service' />
             </Link>
           </li> 

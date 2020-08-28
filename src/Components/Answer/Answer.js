@@ -35,10 +35,10 @@ export default class Answer extends Component {
   render() {   
     return (
       <div>
-        <ul>
-          <li  className='answer'>
+        <ul className='answer'>
+          <li className='answer'>
             {this.state.answer 
-            ? <p>{this.state.answer.content}</p> 
+            ? <p className='answer'>{this.state.answer.content}</p> 
             : <p>Answer not found.</p>}
           </li>        
         </ul>         

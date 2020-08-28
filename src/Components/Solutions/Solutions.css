@@ -14,3 +14,8 @@ li {
 li:hover {
   background-color: rgba(0, 0, 0, 0.14);
 }
+
+.solutions {
+  font-size: .95em;
+  text-decoration: underline;
+}

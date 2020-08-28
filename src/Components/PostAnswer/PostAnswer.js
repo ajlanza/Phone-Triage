@@ -8,10 +8,19 @@ import './PostAnswer.css';
 
 
 
-export default class PostProblem extends  Component {
+export default class PostAnswer extends  Component {
   state = {
     error: null,
     problemToAnswer: ''
+  }
+
+  static defaultProps = {
+    location: {
+      state: {}
+    },
+    history: {
+      push: () => {},
+    },
   }
   
   componentDidMount() {

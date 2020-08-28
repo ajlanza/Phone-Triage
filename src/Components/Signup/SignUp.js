@@ -38,7 +38,7 @@ export default class SignUp extends Component {
           'New account created',
           'success'
         )
-        this.props.history.goBack()
+        this.props.history.push({pathname: `/login`, state: { justRegistered: true } });
       })
       .catch(res => {
         this.setState({ error: res.error })

@@ -46,13 +46,13 @@ export default class Problems extends Component {
     return(
       <div className='problemTitle'>
         <h3> {this.props.problemName} Problems</h3>
-        <ul className='problems'>
-            {this.state.problems.length > 0 
+        <ul>
+          {this.state.problems.length > 0 
             ? this.state.problems.map(problem => 
               <li key={problem.id} onClick={(event) => {
                 this.handleClick(event, problem.problem_type, problem.id)
               }}>
-                {problem.title}
+                <span className='problems'>{problem.title}</span>
                 <div hidden={!(this.state.currentProblemId === problem.id)}>
                   <Solutions problemType={problem.problem_type} problemId={problem.id}/>
                 </div>
@@ -64,8 +64,13 @@ export default class Problems extends Component {
               </div>
             }
             <li>
-              <Link to='/problem'><input type='button' value='Post a problem not listed' /></Link>  
-            </li>            
+              <Link to='/problem'>
+                <input type='button' value='Post a problem not listed' />
+              </Link>  
+              <Link to='/service'>
+                <input type='button' value='Request service' />
+              </Link>  
+            </li>        
         </ul>
       </div>
       )

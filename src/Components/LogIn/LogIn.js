@@ -9,7 +9,9 @@ export default class LogIn extends Component {
   static contextType = TriageContext;
 
   static defaultProps = {
-    location: {},
+    location: {
+      state: {}
+    },
     history: {
       push: () => {},
     },
@@ -38,7 +40,7 @@ export default class LogIn extends Component {
         this.setState({ error: res.error })
         SweetAlert.fire({
           icon: 'error',
-          title: 'Incorrect username or password!',
+          title: res.error,
           text: 'Please try again.'
         })
       })
