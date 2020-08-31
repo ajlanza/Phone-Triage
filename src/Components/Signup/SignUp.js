@@ -48,7 +48,6 @@ export default class SignUp extends Component {
           text: 'Please try again.'
         })
       })
-      
   }
 
   confirmPassword = e => {

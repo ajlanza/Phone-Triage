@@ -34,7 +34,7 @@ export default class LogIn extends Component {
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken) 
-        this.props.history.goBack();
+        this.props.history.push('/');
       })
       .catch(res => {
         this.setState({ error: res.error })
