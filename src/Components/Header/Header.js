@@ -4,8 +4,9 @@ import './Header.css';
 export default class Header extends Component {
   render() {
     return(
-      <div className='hero'>
-        <h1>Phone Triage</h1>
+      <div>
+        <div className='hero'> </div>
+        <p className='title'>Phone Triage</p>
       </div>
     )
   }

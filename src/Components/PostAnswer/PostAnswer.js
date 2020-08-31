@@ -3,14 +3,24 @@ import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import { Link } from 'react-router-dom';
 import ApiService from '../../services/api-service';
+import SweetAlert from 'sweetalert2';
+import './PostAnswer.css';
 
 
 
-export default class PostProblem extends  Component {
+export default class PostAnswer extends  Component {
   state = {
     error: null,
-    alreadyPosted: false,
     problemToAnswer: ''
+  }
+
+  static defaultProps = {
+    location: {
+      state: {}
+    },
+    history: {
+      push: () => {},
+    },
   }
   
   componentDidMount() {
@@ -46,41 +56,43 @@ export default class PostProblem extends  Component {
           .then(res => {
             e.target.title.value = ''
             e.target.answer.value = ''
-            this.setState({ alreadyPosted: true })
+            SweetAlert.fire(
+              'Submitted',
+              'Thanks for submitting a solution.',
+              'success'
+            )
+            this.props.history.goBack();
           })
           .catch(res => {
             this.setState({ error: res.error })
-
+            SweetAlert.fire({
+              icon: 'error',
+              title: this.state.error,
+              text: 'Please try again.'
+            })
           })
     }
 
   render() {
     return(
-        <div>
-        {/* Inform user if answer was posted othewise check if user is logged in */}
-        {this.state.alreadyPosted 
-        ? <h3>Thanks for submitting an answer.</h3> 
-        : <div>
+        <div className='postAnswer'>
           {/* If the user is logged in allow then to submit the form, otherwise inform them to log in or sign up */}
           {TokenService.hasAuthToken() 
             ? <div><h3>Problem to answer: </h3> <h4>"{this.state.problemToAnswer}"</h4></div>
-            : <h3><Link to='/login'>Log in</Link> to post an answer. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
+            : <h3><Link to='/login'>Log in</Link> to post a solution. If you don't have an account, <Link to='/signup'>sign up here</Link>.</h3>
           } 
             <form className='answer-form' onSubmit={this.handleSubmit}>
               <div>
-                <label htmlFor='title'>Title:</label> <br/>
+                <label htmlFor='title'>Title of your solution:</label> <br/>
                 <input required type='text' name='title' id='title' placeholder='Title' /><br />
               </div>
               <div>
-                <label htmlFor='answer'>Answer:</label><br />
+                <label htmlFor='answer'>Solution:</label><br />
                 <textarea required type='text' name='answer' id='answer' placeholder='Steps to fix problem.' />
               </div>
               <button type='submit' disabled={!TokenService.hasAuthToken()}>Post answer</button>
-            </form>
-          </div>
-        }
+            </form>        
       </div>
-        
     )
   }
 }

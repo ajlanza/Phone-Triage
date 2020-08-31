@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
+import './Service.css';
 
 export default class Service extends Component {
   state={
@@ -17,19 +18,19 @@ export default class Service extends Component {
   componentDidMount
   render() {
     return (
-      <div>
+      <div className='service'>
         {this.state.formSubmitted 
-          ? <h2>Your service request has been submitted.<br/> Thank you for using Phone Triage.</h2>
+          ? <h3>Your service request has been submitted.<br/> Thank you for using Phone Triage.</h3>
           :
-      <div>
+      <div className='service'>
         {/* Change the header depending on whether the user has signed in or not */}
         {TokenService.hasAuthToken() 
-        ? <h2>Please fill out the form to request service.</h2> 
-        : <h2>Please <Link to='/login'>sign in</Link> to request service</h2> }
+        ? <h3>Please fill out the form to request service.</h3> 
+        : <h3>Please <Link to='/login'>sign in</Link> to request service</h3> }
         <form className='service-form' onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="address">Address:</label> <br />
-            <input placeholder='Where should we meet you.' type="text" name='first-name' id='first-name' />
+            <input placeholder='Where should we meet you.' type="text" name='address' id='address' />
           </div>
           <div>
             <label htmlFor="model">Phone model:</label> <br />
@@ -41,15 +42,15 @@ export default class Service extends Component {
             </select>
           </div>
           <div>
-            <label htmlFor="username">Email</label> <br />
-            <input type="text" name='username' id='username' />
+            <label htmlFor='email'>Email:</label> <br />
+            <input required type="email" name='email' id='email' />
           </div>
           <div>
-            <label htmlFor="phone-number">Phone number where you can be reached</label> <br />
+            <label htmlFor="phone-number">Phone number where you can be reached:</label> <br />
             <input type="phone-number" name='phone-number' id='phone-number' />
           </div>
           <div>
-            <label htmlFor="details">Details of problem</label> <br />
+            <label htmlFor="details">Details of problem:</label> <br />
             <textarea name='details' id='details' placeholder='Please describe the problem.' />
           </div>
           {/* disable the submit button until user has signed in */}

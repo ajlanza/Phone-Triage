@@ -4,6 +4,7 @@ import ApiService from '../../services/api-service';
 import { Link } from 'react-router-dom';
 import Solutions from '../Solutions/Solutions';
 import './problems.css';
+import loading from '../../img/load.gif';  
 
 export default class Problems extends Component {
   static contextType = TriageContext;
@@ -11,7 +12,8 @@ export default class Problems extends Component {
   state = {
     problems: [],
     currentProblemType: '',
-    currentProblemId: ''
+    currentProblemId: '',
+    hide: true
   }
 
    componentDidMount() {
@@ -34,31 +36,41 @@ export default class Problems extends Component {
     event.preventDefault()
     this.setState({
       currentProblemType: problemType,
-      currentProblemId: problemId
+      currentProblemId: problemId,
+      hide: !this.state.hide
     })
   }
 
   render() {
    
     return(
-      <div className='problems'>
-        <h2> {this.props.problemName} Problems</h2>
-        <ul className="problems">
-            {this.state.problems.length > 0 ? this.state.problems.map(problem => 
+      <div className='problemTitle'>
+        <h3> {this.props.problemName} Problems</h3>
+        <ul>
+          {this.state.problems.length > 0 
+            ? this.state.problems.map(problem => 
               <li key={problem.id} onClick={(event) => {
                 this.handleClick(event, problem.problem_type, problem.id)
               }}>
-                {problem.title}
+                <span className='problems'>{problem.title}</span>
                 <div hidden={!(this.state.currentProblemId === problem.id)}>
                   <Solutions problemType={problem.problem_type} problemId={problem.id}/>
                 </div>
               </li>
             )
-            : <li>No {this.props.type} problems</li>
+            : <div className='loading'>
+                <h3>loading</h3>
+                <img src={loading} alt='loading'/>
+              </div>
             }
             <li>
-              <Link to='/problem'><input type='button' value='Post a new problem' /></Link>  
-            </li>            
+              <Link to='/problem'>
+                <input type='button' value='Post a problem not listed' />
+              </Link>  
+              <Link to='/service'>
+                <input type='button' value='Request service' />
+              </Link>  
+            </li>        
         </ul>
       </div>
       )

@@ -20,6 +20,7 @@ export default class App extends Component {
         <nav>
           <Nav />
         </nav>
+        <br />
         <header>
           <Header />
         </header>
@@ -35,6 +36,6 @@ export default class App extends Component {
           </Switch>
         </main>
       </div>
-    );
+    )  
   }
 }

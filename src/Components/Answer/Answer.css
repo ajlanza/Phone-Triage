@@ -1,0 +1,10 @@
+/* stop the cursor from inheriting the pointer value, answer can't be clicked */
+.answer{
+    cursor: default !important;
+    font-size: .95em;
+    text-decoration: none;
+}
+
+.answer:hover {
+  background-color: unset;  
+}

@@ -2,6 +2,17 @@
   display: flex;
   justify-content: center;
   background-color:#77C9D4;
-  color: white;
+  background-image: url("../../img/heart-beat-medical-illustration-website-header.jpg");
+  background-size: 100% 100%;
+  color: whitesmoke;
   padding: 0;
+  height: 100px;
+}
+
+.title {
+  background-color: black;
+  color: white;
+  margin: 0;
+  text-align: center;
+  font-size: 2em;
 }
