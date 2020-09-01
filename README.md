@@ -30,7 +30,3 @@ The user is first shown a page with common problem types. From here they click o
 * A user must be logged in to post an answer. 
 * A user must be logged in to request service.
 * If a user comes to a point where they need to be logged in, a message indicating they need to log in or register is shown with the apporpriate links
-
-### API that client uses
-
-https://github.com/ajlanza/Phone-Triage-API
