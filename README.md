@@ -4,11 +4,20 @@
 Site built to help users fix problems with their phone.
 The app consists of a forum of problems and solutions as well as a mechanism to request a tech meet you to fix your phone.  
 
+### Live site:  
+https://phone-triage.vercel.app/screen
+
+### API repo:  
+https://github.com/ajlanza/Phone-Triage-API  
+
 View on small screen devices:  
 <img width="231" alt="mobile" src="https://user-images.githubusercontent.com/61472953/91857810-6e3b7180-ec36-11ea-9c3f-375f8c961c0d.PNG">
 
 View on larger screen devices:
 <img width="941" alt="fullscreen" src="https://user-images.githubusercontent.com/61472953/91858246-eace5000-ec36-11ea-89af-dfde500276c1.PNG">
+
+### Built with:  
+HTML, CSS, JavaScript, React
 
 ### Forum & Service Request
 
